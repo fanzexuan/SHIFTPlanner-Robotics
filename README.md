@@ -47,6 +47,7 @@ This repository accompanies our upcoming IROS paper, aiming to encourage further
   - [Features](#features)
     - [Core Features of SHIFTPlanner (Python)](#core-features-of-shiftplanner-python)
     - [IKD-SWOpt (C++) Features](#ikd-swopt-c-features)
+    - [2D-RFICP (Python) Features](#2d-rficp-python-features)
   - [Repository Structure](#repository-structure)
   - [Installation and Setup](#installation-and-setup)
     - [Python Environment Setup](#python-environment-setup)
@@ -54,6 +55,8 @@ This repository accompanies our upcoming IROS paper, aiming to encourage further
   - [Usage Guide](#usage-guide)
     - [SHIFTPlanner (Python)](#shiftplanner-python)
     - [IKD-SWOpt (C++)](#ikd-swopt-c)
+    - [2D-RFICP (Python)](#2d-rficp-python)
+      - [Usage Guide](#usage-guide-1)
     - [Experiments](#experiments)
   - [Code Descriptions](#code-descriptions)
     - [SHIFTPlanner Modules](#shiftplanner-modules)
@@ -65,6 +68,9 @@ This repository accompanies our upcoming IROS paper, aiming to encourage further
       - [`IKD-SWOpt.cpp`](#ikd-swoptcpp)
       - [`ikd_Tree.cpp` \& `ikd_Tree.h`](#ikd_treecpp--ikd_treeh)
       - [`lbfgs.hpp`](#lbfgshpp)
+    - [2D-RFICP Modules](#2d-rficp-modules)
+      - [`SHIFTPlanner-2D-RFICP-Dynamic Algorithm Experiment.py`](#shiftplanner-2d-rficp-dynamic-algorithm-experimentpy)
+      - [`SHIFTPlanner-2D-RFICP-Static Algorithm Experiment.py`](#shiftplanner-2d-rficp-static-algorithm-experimentpy)
   - [Visualizations](#visualizations)
     - [Pathfinding Examples](#pathfinding-examples)
     - [Coverage and Optimization Examples](#coverage-and-optimization-examples)
@@ -129,6 +135,21 @@ With both Python and C++ implementations available, **SHIFTPlanner** caters to a
 5. **Extensive Visualization**  
    Outputs images and animations that illustrate planning and optimization processes.
 
+
+### 2D-RFICP (Python) Features
+
+1. **Dynamic Algorithm Experimentation**  
+   Facilitates dynamic obstacle handling and real-time path adjustments using RFICP (Radiant Field-Informed Coverage Planning).
+
+2. **Static Algorithm Experimentation**  
+   Enables evaluation of path planning algorithms in static environments to benchmark performance.
+
+3. **Comprehensive Simulation**  
+   Includes simulation tools for dirt cleaning scenarios, showcasing practical applications of RFICP in 2D environments.
+
+4. **Visualization Tools**  
+   Provides visual feedback on algorithm performance, including dirty area maps and cleaning simulations.
+
 ---
 
 ## Repository Structure
@@ -159,12 +180,17 @@ SHIFTPlanner/
 │   │       ├── ikd_Tree.cpp       # KD-Tree implementation
 │   │       └── lbfgs.hpp          # Optimization library
 │   │
+│   ├── 2D-RFICP/
+│   │   ├── SHIFTPlanner-2D-RFICP-Dynamic Algorithm Experiment.py
+│   │   └── SHIFTPlanner-2D-RFICP-Static Algorithm Experiment.py
+│   │
 │   └── SHIFTPlanner/
 │       ├── __init__.py
 │       ├── kdtree_astar.py
 │       ├── SHIFTplanner-3DCCP.py
 │       ├── SHIFTplanner_PLANNER_TRJ_OPTIM.py
 │       └── SHIFTplanner-SegmentTrjOptim.py
+│ 
 │
 └── experiments/ (ongoing)         # Contains experiments, configs, results
     ├── figures/                    # Stores figures from experiment logs
@@ -194,7 +220,8 @@ SHIFTPlanner/
   - `docs/`: Additional documentation for IKD-SWOpt.
     - `images/`: (Optional) Additional images if needed.
   - `README.md`: IKD-SWOpt specific README.
-
+- **`src/2D-RFICP/`**  
+  Python scripts for dynamic and static algorithm experiments.
 - **`experiments/`**  
   Contains experiment configurations, results, and additional documentation.
   - `figures/`: Stores generated figures from experiments.
@@ -313,6 +340,34 @@ SHIFTPlanner/
    - **Visualization Windows**: Display paths and optimized trajectories.
    - **Saved Images**: Automatically saves visualizations for each test case in the working directory.
 
+### 2D-RFICP (Python)
+
+#### Usage Guide
+
+1. **Navigate to 2D-RFICP Directory**
+
+    ```bash
+    cd src/2D-RFICP/
+    ```
+
+2. **Run Dynamic Algorithm Experiment**
+
+    ```bash
+    python SHIFTPlanner-2D-RFICP-Dynamic Algorithm Experiment.py
+    ```
+
+3. **Run Static Algorithm Experiment**
+
+    ```bash
+    python SHIFTPlanner-2D-RFICP-Static Algorithm Experiment.py
+    ```
+
+4. **Visual Outputs**
+
+    - Dirt cleaning simulations.
+    - Dirty area maps visualizing algorithm performance.
+
+
 ### Experiments
 
 Refer to the `experiments/` directory for detailed experiment setups and example runs. Each `example_run_*.md` provides step-by-step instructions and results for specific scenarios.
@@ -352,6 +407,17 @@ Implements the Incremental KD-Tree data structure for efficient management and q
 #### `lbfgs.hpp`
 
 A header-only library implementing the Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS) optimization algorithm. It is used for trajectory optimization within the sliding window framework to ensure smooth and feasible robot paths.
+
+### 2D-RFICP Modules
+
+#### `SHIFTPlanner-2D-RFICP-Dynamic Algorithm Experiment.py`
+
+Conducts dynamic algorithm experiments using the **2D-RFICP** framework. This script simulates obstacle environments and evaluates the algorithm's performance in real-time path adjustment and obstacle avoidance.
+
+#### `SHIFTPlanner-2D-RFICP-Static Algorithm Experiment.py`
+
+Performs static algorithm experiments within the **2D-RFICP** framework. This script assesses the path planning and coverage performance in static obstacle environments, providing baseline metrics for comparison.
+
 
 ---
 
@@ -404,6 +470,23 @@ A header-only library implementing the Limited-memory Broyden–Fletcher–Goldf
 <p align="center">
   <em>Figure: Optimization process of trajectory segments within the sliding window of the IKD-SWOpt framework.</em>
 </p>
+
+<p align="center">
+  <img src="docs/images/2D-RFICP/dirty_area_map.png" width="45%" alt="SHIFT View 2">
+  <img src="docs/images/2D-RFICP/speed_allocation_trajectory.png" width="45%" alt="Combined Display Map">
+</p>
+
+<p align="center">
+  <img src="docs/images/2D-RFICP/blocky_aridity_map.png" width="45%" alt="SHIFT View 2">
+  <img src="docs/images/2D-RFICP/terrain_and_path.png" width="45%" alt="Combined Display Map">
+</p>
+
+
+<p align="center">
+  <em>Figure: Velocity Planning Algorithm Based on 2D/3D-RFICP and Semantic Maps.</em>
+</p>
+
+
 <p align="center">
   <img src="docs/images/SHIFT/2dshift.png" width="45%" alt="2D SHIFT Visualization">
   <img src="docs/images/SHIFT/shift_view1.png" width="45%" alt="SHIFT View 1">
@@ -472,6 +555,12 @@ A header-only library implementing the Limited-memory Broyden–Fletcher–Goldf
 <p align="center">
   <em>Figure: Optimization process for 2D obstacle-avoidance trajectory segments.</em>
 </p>
+<p align="center">
+  <img src="docs/images/2D-RFICP/dirt_cleaning_simulation.gif" width="100%" alt="Speed Allocation Trajectory Optimization">
+</p>
+<p align="center">
+  <em>Figure: 2D-SHIFTPlanner Coverage Planning Process, 2D-RFICP Dirty Removal Cleaning Simulation.</em>
+</p>
 
 #### Summary of the Process Demonstrated by the Animations:
 
@@ -524,6 +613,12 @@ This phased release strategy ensures accessibility to the community while mainta
 
 4. **IKD-SWOpt**  
    Achieves real-time re-planning in dynamic environments with moving obstacles, ensuring smooth, collision-free trajectories.
+
+5. **2D-RFICP**
+     Demonstrated robust performance in environments with moving obstacles.Provided baseline metrics for path planning efficiency and coverage.
+    
+  Extensive experiments conducted with drones and robotic vacuum cleaners in complex real-world environments validate the effectiveness of our approach. The proposed framework demonstrates superior coverage performance and adaptability compared to existing methods, achieving efficient, uniform, and obstacle-aware trajectories suitable for autonomous systems operating in dynamic environments.
+
 
 Refer to the `experiments/example_run_*.md` files for reproducible experiments and performance graphs.
 
