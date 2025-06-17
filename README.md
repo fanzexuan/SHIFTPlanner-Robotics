@@ -28,13 +28,12 @@
   <em>Figure: Coverage path planning using the SHIFT-RFICP algorithm on a semantic map of arid hilly terrain.</em>
 </p>
 
-This repository accompanies our upcoming IROS paper, aiming to encourage further research, application, and community-driven enhancements.
+This repository aim to encourage further research, application, and community-driven enhancements.
 
 > **Paper Citation:**
 > 
 > **"SHIFT Planner: Speedy Hybrid Iterative Field and Segmented Trajectory Optimization with IKD-tree for Uniform Lightweight Coverage"**  
 > *Zexuan Fan, Sunchun Zhou, Hengye Yang, Junyi Cai, Ran Cheng, Lige Liu, Tao Sun*  
-> **Target Conference:** IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025)  
 > **Preprint Link:** [https://arxiv.org/abs/2412.10706](https://arxiv.org/abs/2412.10706)
 
 ---
@@ -632,7 +631,7 @@ If you use **SHIFTPlanner** or **IKD-SWOpt** in your academic work, please consi
 @inproceedings{fan2025shiftplanner,
   title={SHIFT Planner: Speedy Hybrid Iterative Field and Segmented Trajectory Optimization with IKD-tree for Uniform Lightweight Coverage},
   author={Fan, Zexuan and Zhou, Sunchun and Yang, Hengye and Cai, Junyi and Cheng, Ran and Liu, Lige and Sun, Tao},
-  booktitle={Proceedings of IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  booktitle={None},
   year={2025}
 }
 ```
